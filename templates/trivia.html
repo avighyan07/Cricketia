@@ -1,0 +1,180 @@
+{% block content %}
+<style>
+    body {
+        background-color: #121212;
+        color: #ff69b4;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+    }
+
+    .home-link {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .home-link a {
+        color: #ff69b4;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: 2px solid #ff69b4;
+        transition: 0.3s;
+    }
+
+    .home-link a:hover {
+        background-color: #ff69b4;
+        color: black;
+    }
+
+    .quiz-container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        background-color: #1e1e1e;
+        border-radius: 10px;
+        box-shadow: 0px 0px 12px #ff69b4;
+    }
+
+    .question {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: #ff69b4;
+    }
+
+    .options label {
+        display: block;
+        background: #333;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        color: #fff;
+        border: 1px solid transparent;
+    }
+
+    .options input {
+        display: none;
+    }
+
+    .options label:hover {
+        background: #ff69b4;
+        color: black;
+    }
+
+    .options label.selected {
+        background: #ff69b4;
+        color: black;
+        font-weight: bold;
+        border-color: #ff1493;
+    }
+
+    .submit-btn {
+        background-color: #ff69b4;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+        background-color: #ff1493;
+    }
+
+    .score {
+        margin-top: 20px;
+        font-size: 20px;
+        color: #ff69b4;
+    }
+
+    .reset-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: #ff69b4;
+        color: black;
+        border: none;
+        padding: 8px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .reset-btn:hover {
+        background-color: #ff1493;
+    }
+</style>
+
+<div class="home-link">
+    <p><a href="{{ url_for('home') }}">🏠 Home</a></p>
+</div>
+
+<div class="quiz-container">
+    <h2>IPL Trivia Quiz</h2>
+
+    <form id="quizForm">
+        {% for i in range(questions|length) %}
+            <div class="question">
+                <p>{{ i+1 }}. {{ questions[i].question }}</p>
+                <div class="options">
+                    {% for option in questions[i].options %}
+                        <label onclick="highlightOption(this)">
+                            <input type="radio" name="q{{ i }}" value="{{ option }}"> {{ option }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+
+        <button type="button" class="submit-btn" onclick="calculateScore()">Submit</button>
+        <button type="button" class="reset-btn" onclick="resetSearch()">🔄 Reset</button>
+    </form>
+
+    <div class="score" id="scoreDisplay"></div>
+</div>
+
+<script>
+    function highlightOption(selectedLabel) {
+        const parentDiv = selectedLabel.parentElement;
+        const allLabels = parentDiv.querySelectorAll("label");
+        allLabels.forEach(label => label.classList.remove("selected"));
+        selectedLabel.classList.add("selected");
+    }
+
+    function calculateScore() {
+        const correctAnswers = {{ correct_answers | tojson }};
+        const totalQuestions = correctAnswers.length;
+        let score = 0;
+        let selectedAnswers = new Array(totalQuestions).fill(null);
+
+        for (let i = 0; i < totalQuestions; i++) {
+            const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+            if (selectedOption) {
+                selectedAnswers[i] = selectedOption.value.trim();
+            }
+        }
+
+        for (let i = 0; i < totalQuestions; i++) {
+            if (selectedAnswers[i] === correctAnswers[i].trim()) {
+                score++;
+            }
+        }
+
+        const scoreDisplay = document.getElementById("scoreDisplay");
+        scoreDisplay.innerHTML = `Your Score: ${score} / ${totalQuestions}`;
+        scoreDisplay.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function resetSearch() {
+        window.location.href = "quiz_trivia";
+    }
+</script>
+{% endblock %}

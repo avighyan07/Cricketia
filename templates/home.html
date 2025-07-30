@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CricketVerse - Gully se Globe Tak!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #fff;
+    }
+
+    /* ---------------- Navbar ---------------- */
+    .navbar {
+  background-color: #1a1a1a;
+  border-bottom: 2px solid #ff69b4;
+  padding: 12px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-left a,
+.navbar-right a {
+  color: #ff69b4;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 15px;
+  border: 2px solid #ff69b4;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+.navbar-left a:hover,
+.navbar-right a:hover {
+  background-color: #ff69b4;
+  color: black;
+}
+
+.navbar-marquee {
+  flex-grow: 1;
+  margin: 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.navbar-marquee span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 15s linear infinite;
+  font-size: 16px;
+  color: #ffccdd;
+}
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ---------------- Main ---------------- */
+    .container {
+      width: 90%;
+      margin: auto;
+      padding: 40px 0;
+    }
+
+    h1 {
+      color: #ff69b4;
+      text-align: center;
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .about-box {
+      background-color: #1f1f1f;
+      border-left: 6px solid #ff69b4;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 50px;
+    }
+
+    .about-box p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    .feature-card {
+      background-color: #1f1f1f;
+      border: 1px solid #ff69b4;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
+    }
+
+    .feature-title {
+      font-size: 22px;
+      color: #ff69b4;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    /* ---------------- Footer ---------------- */
+    footer {
+      background-color: #1f1f1f;
+      padding: 30px;
+      text-align: center;
+      border-top: 2px solid #ff69b4;
+    }
+
+    footer h3 {
+      color: #ff69b4;
+      margin-bottom: 10px;
+    }
+
+    footer p, footer a {
+      font-size: 15px;
+      color: #ff69b4;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+  <div class="navbar-left">
+    <a href="/">🏠 Home</a>
+  </div>
+  <div class="navbar-marquee">
+    <span>🚀 Welcome to CricketVerse - Experience AI-powered Cricket Tools: Prediction, Stats, Summarizer, Quiz & More! 🏏</span>
+  </div>
+  <div class="navbar-right">
+    <a href="/contact">📞 Contact Me</a>
+  </div>
+</div>
+
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>🏏 CricketVerse - Gully se Globe Tak!</h1>
+
+    <div class="about-box">
+      <p class="fs-3 mt-4 px-5">
+        Dive into the ultimate AI-powered cricket companion where technology meets cricket passion!
+        From <span style="color: #ff4da6;">live match predictions</span>, in-depth <span style="color: #ff4da6;">player stats</span>,
+        personalized <span style="color: #ff4da6;">player companion insights</span>, lightning-fast <span style="color: #ff4da6;">match summarizer</span>,
+        to fun-filled <span style="color: #ff4da6;">quizzes and trivia</span> — all in one pink-powered cricketverse. 
+      </p>
+    </div>
+
+    <div class="features">
+      <a href="/predict" class="feature-card">
+        <div class="feature-title">📊 Match Prediction</div>
+        <div class="feature-desc">Predict the winner – kya tumhara cricket sense sahi hai?</div>
+      </a>
+
+      <a href="/cricketer_info" class="feature-card">
+        <div class="feature-title">🙋‍♂️ Know the Cricketer</div>
+        <div class="feature-desc">Player ka naam daalo, uska pura profile, stats aur history pao!</div>
+      </a>
+
+      <a href="/compare" class="feature-card">
+        <div class="feature-title">🧠 Player Comparator</div>
+        <div class="feature-desc">Tulna kijiye apne favourite players ke beech!</div>
+      </a>
+    </div>
+
+    <div class="features">
+      <a href="/summarize" class="feature-card">
+        <div class="feature-title">📝 Match Summarizer</div>
+        <div class="feature-desc">Match ki lambi kahaniyon ka short mein gist chahiye? Yeh tool hai kaafi smart!</div>
+      </a>
+
+      <a href="/quiz_trivia" class="feature-card">
+        <div class="feature-title">🎯 Quiz & Trivia</div>
+        <div class="feature-desc">Apna cricket gyaan test karo – quizzes aur fun trivia ke saath!</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h3>📩 Contact Me</h3>
+    <p>Email: <a href="mailto:avighyanchakraborty@gmail.com">avighyanchakraborty@gmail.com</a> |
+       LinkedIn: <a href="https://www.linkedin.com/in/avighyan-chakraborty-823506370" target="_blank">Avighyan Chakraborty</a></p>
+    <p><a href="/feedback">💬 Give Feedback</a></p>
+  </footer>
+
+</body>
+</html>

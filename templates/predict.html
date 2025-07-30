@@ -1,0 +1,221 @@
+{% block content %}
+
+<div class="welcome-container">
+    
+    <h1>Victory Predictor 🎀🔮</h1>
+    <p>Enter the details below to get your match prediction.</p>
+</div>
+
+{% if output %}
+<div class="result fade-in-top">
+    <strong>Prediction Result:</strong>
+    <p>{{ output }}</p>
+</div>
+{% endif %}
+
+<form method="post" class="predict-form">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">{{ form.batting_team.label }}{{ form.batting_team }}</div>
+    <div class="form-group">{{ form.bowling_team.label }}{{ form.bowling_team }}</div>
+    <div class="form-group">{{ form.city.label }}{{ form.city }}</div>
+    <div class="form-group">{{ form.runs_left.label }}{{ form.runs_left }}</div>
+    <div class="form-group">{{ form.balls_left.label }}{{ form.balls_left }}</div>
+    <div class="form-group">{{ form.wickets.label }}{{ form.wickets }}</div>
+    <div class="form-group">{{ form.total_runs_x.label }}{{ form.total_runs_x }}</div>
+    <div class="form-group">{{ form.crr.label }}{{ form.crr }}</div>
+    <div class="form-group">{{ form.rrr.label }}{{ form.rrr }}</div>
+
+    <button type="submit">🎯 Predict</button>
+
+    <div class="home-link">
+        <p><a href="{{ url_for('home') }}">🏠 Home</a></p>
+        <button type="button" class="reset-btn" onclick="resetSearch()">🔄 Reset</button>
+    </div>
+</form>
+
+<script>
+    function resetSearch() {
+        window.location.href = "{{ url_for('predict') }}";
+    }
+</script>
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: #0d0d0d;
+        color: #ff99cc;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .result {
+        margin: 20px auto;
+        background: #2a002f;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border: 2px solid #ff66b2;
+        font-size: 18px;
+        color: #ffe6f3;
+        animation: fadeInTop 0.8s ease-out;
+        text-align: center;
+        width: 60%;
+    }
+
+    .fade-in-top {
+        animation: fadeInTop 0.8s ease-in-out;
+    }
+
+    @keyframes fadeInTop {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+ 
+
+    .home-link {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .home-link a {
+        color: #ff66b2;
+        text-decoration: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: 2px solid #ff66b2;
+        transition: 0.3s;
+    }
+
+    .home-link a:hover {
+        background-color: #ff66b2;
+        color: black;
+    }
+
+    .welcome-container {
+        text-align: center;
+        background: #1a1a1a;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.5);
+        width: 50%;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .welcome-container h1 {
+        color: #ff66b2;
+        font-size: 32px;
+        margin-bottom: 5px;
+    }
+
+    .welcome-container p {
+        font-size: 16px;
+        color: #eee;
+    }
+
+    .predict-form {
+        background: #1a1a1a;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+        width: 400px;
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .form-group {
+        margin-bottom: 12px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+        color: #ff99cc;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #ff66b2;
+        border-radius: 5px;
+        background: #0d0d0d;
+        color: #ffb6d9;
+        transition: 0.3s ease-in-out;
+    }
+
+    input:focus, select:focus {
+        border-color: #ff33aa;
+        box-shadow: 0 0 6px rgba(255, 51, 170, 0.7);
+    }
+
+    button {
+        background: #ff66b2;
+        color: black;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 100%;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    button:hover {
+        background: #ff1493;
+    }
+
+    .result {
+        margin-top: 15px;
+        font-size: 18px;
+        color: #ff99cc;
+    }
+
+    .reset-btn {
+    background-color: transparent;
+    color: #ff66b2;
+    border: 2px solid #ff66b2;
+    padding: 8px 12px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.reset-btn:hover {
+    background-color: #ff66b2;
+    color: black;
+}
+
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+{% endblock content %}

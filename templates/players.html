@@ -1,0 +1,173 @@
+{% block content %}
+<div class="home-link">
+    <p><a href="{{ url_for('home') }}">🏠 Home</a></p>
+</div>
+
+<div class="search-container">
+    <form method="get">
+        <input type="text" name="search" placeholder="Search Player..." value="{{ search_query }}">
+        <br>
+        <button type="submit">🔍 Search</button>
+        <button type="button" onclick="resetSearch()">🔄 Reset</button>
+    </form>
+</div>
+
+<div class="player-grid">
+    {% for player in players %}
+    <div class="player-card" onclick="openModal(
+        '{{ player.Player }}', '{{ player.COUNTRY }}', '{{ player.TEAM }}', '{{ player.AGE }}',
+        '{{ player.Playing_Role }}', '{{ player.Mat }}', '{{ player.Inns }}', '{{ player.Runs }}',
+        '{{ player.BF }}', '{{ player.HS }}', '{{ player.Avg }}', '{{ player.SR }}', 
+        '{{ player.B_TWkts }}', '{{ player.B_Avg }}', '{{ player.B_Econ }}', '{{ player.SOLD_PRICE }}')">
+        <h3>{{ player.Player }}</h3>
+        <p>{{ player.TEAM }}</p>
+        <p>{{ player.Country }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div id="playerModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modalName"></h3>
+        <p><strong>Country:</strong> <span id="modalCountry"></span></p>
+        <p><strong>Team:</strong> <span id="modalTeam"></span></p>
+        <p><strong>Age:</strong> <span id="modalAge"></span></p>
+        <p><strong>Playing Role:</strong> <span id="modalRole"></span></p>
+        <p><strong>Matches:</strong> <span id="modalMat"></span></p>
+        <p><strong>Innings:</strong> <span id="modalInns"></span></p>
+        <p><strong>Runs:</strong> <span id="modalRuns"></span></p>
+        <p><strong>Balls Faced:</strong> <span id="modalBF"></span></p>
+        <p><strong>Highest Score:</strong> <span id="modalHS"></span></p>
+        <p><strong>Batting Avg:</strong> <span id="modalAvg"></span></p>
+        <p><strong>Strike Rate:</strong> <span id="modalSR"></span></p>
+        <p><strong>Wickets:</strong> <span id="modalWkts"></span></p>
+        <p><strong>Bowling Avg:</strong> <span id="modalBAvg"></span></p>
+        <p><strong>Economy:</strong> <span id="modalEcon"></span></p>
+        <p><strong>Sold Price:</strong> <span id="modalPrice"></span></p>
+    </div>
+</div>
+
+<script>
+    function openModal(...args) {
+        const ids = ['modalName','modalCountry','modalTeam','modalAge','modalRole','modalMat','modalInns','modalRuns','modalBF','modalHS','modalAvg','modalSR','modalWkts','modalBAvg','modalEcon','modalPrice'];
+        ids.forEach((id, i) => {
+            document.getElementById(id).innerText = args[i];
+        });
+        document.getElementById('playerModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('playerModal').style.display = 'none';
+    }
+
+    function resetSearch() {
+        window.location.href = "cricketer_info";
+    }
+</script>
+
+<style>
+    body {
+        background: #0d0d0d;
+        color: #ff85c1;
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
+
+    a {
+        color: #ff5ca1;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    input {
+        padding: 10px;
+        border: 2px solid #ff85c1;
+        border-radius: 6px;
+        background: #1a1a1a;
+        color: #ffb3d9;
+        width: 300px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 10px 5px;
+        border: none;
+        border-radius: 6px;
+        background-color: #ff5ca1;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #ff2d88;
+    }
+
+    .player-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .player-card {
+        background: #1a1a1a;
+        padding: 15px;
+        border-radius: 12px;
+        width: 240px;
+        box-shadow: 0 0 10px #ff85c1;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+
+    .player-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px #ff2d88;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .modal-content {
+        background: #1a1a1a;
+        color: #ffb3d9;
+        padding: 25px;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 0 15px #ff5ca1;
+        position: relative;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        color: #ff85c1;
+        cursor: pointer;
+    }
+
+    .search-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .home-link {
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}

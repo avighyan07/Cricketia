@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Me - CricketVerse</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #f8f8f8;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1f1f1f;
+      padding: 10px 20px;
+      border-bottom: 2px solid #ff69b4;
+    }
+
+    .navbar-left a {
+      margin-right: 20px;
+      text-decoration: none;
+      color: #ff69b4;
+      font-size: 1.1rem;
+    }
+
+    .navbar-left a:hover {
+      text-decoration: underline;
+    }
+
+    .navbar-marquee span {
+      color: #ffffff;
+      font-weight: bold;
+      animation: marquee 15s linear infinite;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 60px auto;
+      text-align: center;
+      padding: 30px;
+      background-color: #1e1e1e;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+    }
+
+    a {
+      color: #ff69b4;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      border-top: 2px solid #ff69b4;
+      margin-top: 50px;
+    }
+
+    footer a {
+      font-size: 1.1rem;
+      color: #ff69b4;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="navbar-left">
+      <a href="/">🏠 Home</a>
+      
+      <a href="/contact">📞 Contact Me</a>
+    </div>
+    <div class="navbar-right">
+      <div class="navbar-marquee">
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="container">
+    <h2 class="mb-4">📞 Contact Me</h2>
+    <p style="font-size: 1.2rem;">Email: <a href="mailto:avighyanchakraborty@gmail.com">avighyanchakraborty@gmail.com</a></p>
+    <p style="font-size: 1.2rem;">LinkedIn: <a href="https://www.linkedin.com/in/avighyan-chakraborty-823506370" target="_blank">Avighyan Chakraborty</a></p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p><a href="/feedback">💬 Give Feedback</a></p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Compare Players</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #333;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ff99cc;
+    }
+    form {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    select, button, a.button-link {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      text-decoration: none;
+      text-align: center;
+    }
+    select {
+      background-color: #333;
+      color: #fff;
+    }
+    button {
+      background-color: #ff99cc;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff99cc;
+    }
+    a.button-link {
+      background-color: #444;
+      color: #fff;
+    }
+    a.button-link:hover {
+      background-color: #666;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      background-color: #222;
+      color: #ff99cc;
+    }
+    tr:hover {
+      background-color: #2a2a2a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Compare Two Players</h2>
+    <form method="POST">
+      <select name="player1" required>
+        <option value="">Select Player 1</option>
+        {% for player in players %}
+          <option value="{{ player }}" {% if player == p1 %}selected{% endif %}>{{ player }}</option>
+        {% endfor %}
+      </select>
+
+      <select name="player2" required>
+        <option value="">Select Player 2</option>
+        {% for player in players %}
+          <option value="{{ player }}" {% if player == p2 %}selected{% endif %}>{{ player }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit">Compare</button>
+    </form>
+
+    <div class="buttons">
+      <a href="/" class="button-link">Home</a>
+      <a href="/compare" class="button-link">Reset</a>
+    </div>
+
+    {% if p1_stats and p2_stats %}
+      <h2>{{ p1 }} vs {{ p2 }}</h2>
+      <table>
+        <tr>
+          <th>Stat</th>
+          <th>{{ p1 }}</th>
+          <th>{{ p2 }}</th>
+        </tr>
+        {% for key in p1_stats.keys() %}
+        <tr>
+          <td>{{ key }}</td>
+          <td>{{ p1_stats[key] }}</td>
+          <td>{{ p2_stats[key] }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+  </div>
+</body>
+</html>

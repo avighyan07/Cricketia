@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback - CricketVerse</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 15px 20px;
+      background-color: #1f1f1f;
+      border-bottom: 2px solid #ff69b4;
+    }
+
+    .home-btn {
+      background-color: #ff69b4;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .home-btn:hover {
+      background-color: #e057a1;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #ff69b4;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #2a2a2a;
+      color: white;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border: 1px solid #ff69b4;
+    }
+
+    .btn {
+      background-color: #ff69b4;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 6px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .btn:hover {
+      background-color: #e057a1;
+    }
+
+    .thank-you {
+      display: none;
+      margin-top: 30px;
+      text-align: center;
+      color: #90ee90;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 20px;
+      background-color: #1f1f1f;
+      color: #ccc;
+      border-top: 2px solid #ff69b4;
+    }
+
+    footer a {
+      color: #ff69b4;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar with Home Button -->
+  <div class="topbar">
+    <a href="/" class="home-btn">🏠 Home</a>
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="container">
+    <h2>💬 We Value Your Feedback</h2>
+
+    <form id="feedbackForm">
+      <label for="name">Your Name:</label>
+      <input type="text" name="name" class="form-control" required>
+
+      <label for="message">Your Feedback:</label>
+      <textarea name="message" rows="5" class="form-control" required></textarea>
+
+      <button type="submit" class="btn">Submit Feedback</button>
+    </form>
+
+    <div id="thankYouMessage" class="thank-you">
+      ✅ Thank you for your feedback!
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>💬 Thank you for helping improve CricketVerse!</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('feedbackForm');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // prevent form submission
+      form.style.display = 'none'; // hide form
+      thankYouMessage.style.display = 'block'; // show message
+    });
+  </script>
+
+</body>
+</html>

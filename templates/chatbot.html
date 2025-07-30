@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Cricket Chatbot{% endblock %}
+{% block content %}
+<h3 class="mb-3">Talk to our CricketBot 🤖</h3>
+<form method="POST">
+  <div class="mb-3">
+    <textarea class="form-control" name="user_input" rows="3" placeholder="Ask about a player or stats..."></textarea>
+  </div>
+  <button type="submit" class="btn btn-info">Ask</button>
+</form>
+
+{% if response %}
+  <div class="alert alert-secondary mt-3">
+    <strong>Response:</strong> {{ response }}
+  </div>
+{% endif %}
+{% endblock %}
